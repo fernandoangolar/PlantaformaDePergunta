@@ -1,0 +1,18 @@
+{
+  "name": "plantaforma_de_perguntas",
+  "version": "1.0.0",
+  "description": "Uma plantaforma de pergunta e respontas",
+  "main": "index.js",
+  "author": "Fernando Angolar",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.9",
+    "express": "^4.18.2"
+  },
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
