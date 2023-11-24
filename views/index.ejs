@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Plantaforma de pergunta e respontas</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
+    <img src="/img/guia.png" alt="">
     <h1>Guia perguntas</h1>
     <hr>
     <h3>Lista de perguntas</h3>
@@ -21,10 +23,11 @@
         <h3>  Nenhum erro  </h3>
     <% }%>
 
-    <ul>
-        <% users.forEach(user => { %>
-            <li> <%= user %> </li>
-        <% }) %>
-    </ul>
+    <% produtos.forEach( function(produto) { %>
+        <hr>
+        <h3> <%= produto.nome %> </h3>
+        <h3> <%= produto.preco %> </h3>
+    <% } ) %>
+
 </body>
 </html>
