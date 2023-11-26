@@ -1,6 +1,19 @@
 const express = require("express")
 const app = express()
 const bodyParser = require("body-parser")
+const connection = require('./database/database')
+const Pergunta = require('./database/Pergunta')
+
+// Database 
+connection
+    .authenticate()
+    .then( () => {
+        console.log('Conexão feita com o banco de dados')
+    })
+    .catch( (msqErro) => {
+        console.log(msqErro)
+    })
+
 const port = 8080
 
 // Estou dizendo para Express usar o EJS como View engine
@@ -25,7 +38,12 @@ app.post( "/salvarpergunta", (req, res) => {
     let titulo = req.body.titulo
     let descricao = req.body.descricao
 
-    res.send('Formulario Recebido!  titulo : ' + titulo + " descricao : " + descricao )
+    Pergunta.create( {
+        titulo : titulo,
+        descricao : descricao
+    }).then( () => {
+        res.redirect("/")
+    })
 }) 
 
 app.listen(port, () => {
