@@ -25,8 +25,15 @@ app.use(bodyParser.urlencoded( {extended: false} ))
 app.use(bodyParser.json());
 
 app.get("/", (req, res) => {
- 
-    res.render("index")
+
+    Pergunta.findAll( {raw: true, order: [
+        ['id', 'DESC']
+    ]} )
+        .then( perguntas => {
+            res.render("index", {
+                perguntas : perguntas
+            })
+        } )
 } )
 
 app.get("/perguntar", (req, res) => {
@@ -45,6 +52,23 @@ app.post( "/salvarpergunta", (req, res) => {
         res.redirect("/")
     })
 }) 
+
+app.get("/pergunta/:id", (req, res) => {
+    let id = req.params.id;
+
+    // busca no banco de dados
+    Pergunta.findOne( {
+        where: { id : id }
+    }).then(pergunta => {
+        if ( pergunta != undefined ) { //Pergunta encontrada
+            res.render("pergunta", {
+                pergunta: pergunta
+            })
+        } else { // Não encontrada
+            res.redirect("/")
+        }
+    })
+})
 
 app.listen(port, () => {
     console.log("App rodando na porta ", port)
