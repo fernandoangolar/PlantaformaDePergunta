@@ -10,14 +10,14 @@
         <a href="/perguntar" class="btn btn-primary">Perguntar</a>
         <br>
         <hr>
-        <% perguntas.forEach(perduntas => { %>
+        <% perguntas.forEach(perguntas => { %>
             <br>
             <div class="card">
                 <div class="card-body">
-                    <h3> <%= perduntas.titulo %> </>
+                    <h3> <%= perguntas.titulo %> </>
                 </div>
                 <div class="card-footer">
-                    <div class="btn btn-primary">Responder</div>
+                    <a href="/pergunta/<%=  perguntas.id %>"> <button class="btn btn-primary"> Responder </button> </a> 
                 </div>
             </div>
 
